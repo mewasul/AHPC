@@ -6,7 +6,7 @@ from sympy import factorial
 from scipy.linalg import solve
 import numpy as np
 
-M = 3;
+M = 2;
 N = 2*M+1;
 
 A = np.zeros((N,N))
@@ -17,7 +17,8 @@ d[1] = 1;           # diff order 1
 for i in range(N):
     for j in range(M+1):
          A[i,j] = A[i,-(j+1)] = (M-j)**i/(float)(factorial(i))   # values of matrix
-         A[i,j] *= (-1)**(i*(j+1))                                     # alternating sign
+         A[i,j] *= (-1)**(i)                                  # alternating sign
 
-a = np.linalg.solve(A, d)
+a = np.linalg.solve(A,d)
+
 print a
