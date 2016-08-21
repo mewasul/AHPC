@@ -3,22 +3,20 @@
 
 from sympy.matrices import *
 from sympy import factorial
-from scipy.linalg import solve
-import numpy as np
 
-M = 2;
+M = 3;
 N = 2*M+1;
 
-A = np.zeros((N,N))
-d = np.zeros(N)
+A = zeros(N,N)
+d = zeros(N,1)
 
 d[1] = 1;           # diff order 1
 
 for i in range(N):
     for j in range(M+1):
-         A[i,j] = A[i,-(j+1)] = (M-j)**i/(float)(factorial(i))   # values of matrix
-         A[i,j] *= (-1)**(i)                                  # alternating sign
+         A[i,j] = A[i,-(j+1)] = (M-j)**i/(factorial(i))   # values of matrix
+         A[i,j] *= (-1)**(i)                              # alternating sign
 
-a = np.linalg.solve(A,d)
+a = A.solve(d)
 
 print a
